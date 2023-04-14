@@ -1,0 +1,30 @@
+.form-container{
+    width: 100vw;
+    /* margin: 0px auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.box {
+    margin-top: 15px;
+    border-radius: 8px;
+    width: 500px;
+    padding-left: 6px;
+}
+
+.button{
+    margin-top: 20px;
+    border-radius: 8px;
+    background-color: rgb(76, 119, 250);
+    color: white;
+}
+
+strong{
+    color: rgb(223, 54, 54);
+}
+
+p{
+    color: green;
+}
