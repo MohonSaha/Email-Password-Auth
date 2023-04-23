@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Register.css';
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, sendEmailVerification } from "firebase/auth";
 import app from '../../firebase/firebase.config';
 
 const Register = () => {
@@ -18,17 +18,26 @@ const Register = () => {
     const handleSubmit = (event) =>{
         event.preventDefault();       
         setSuccess('');
+        
         setError('');
+
+
         const email = event.target.email.value;
         const password = event.target.password.value;
 
         // PassWord validation System 
         if(!/(?=.*[A-Z].*[A-Z].*[A-Z])/.test(password)){
-            setError('Please add at least 3 Uppercase. Ex: 66ghA8ML')
+            setError('Please add at least 3 Uppercase.')
             return;
         }
-
-
+        else if(!/(?=.*[0-9].*[0-9])/.test(password)){
+            setError('Please add at least 2 numbers');
+            return;
+        }
+        else if(password.length <6){
+            setError("Please add at least 6 charecters");
+            return;
+        }
 
 
 
@@ -39,6 +48,7 @@ const Register = () => {
             setError('');
             event.target.reset();
             setSuccess('Created Successfully')
+            sendVarificationEmail(loggedUser)
         })
         .catch(error => {
             console.error(error.message);
@@ -47,8 +57,16 @@ const Register = () => {
 
     }
 
+    const sendVarificationEmail = (user) =>{
+        sendEmailVerification(user)
+        .then(result=>{
+            console.log(result);
+            alert('Verify your mail')
+        })
+    }
+
     const handleEmailChange = (event) =>{
-        console.log(event.target.value);
+        // console.log(event.target.value);
         setEmail(event.target.value)
     }
 

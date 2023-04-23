@@ -15,10 +15,13 @@
 }
 
 .button{
-    margin-top: 20px;
-    border-radius: 8px;
+    margin-top: 0px;
+    border-radius: 10px;
+    border: 2px solid black;
     background-color: rgb(76, 119, 250);
     color: white;
+    font-weight: 700;
+    padding: 4px 10px;
 }
 
 strong{
